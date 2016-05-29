@@ -3,3 +3,14 @@
 
 # Cache filesystem
 /dev/block/platform/soc.0/7824900.sdhci/by-name/cache                 u:object_r:cache_block_device:s0
+
+# Fingerprint
+#/system/bin/fingerprintd                                              u:object_r:fingerprintd_exec:s0
+#/dev/socket/fpce                                                      u:object_r:fpce_socket:s0
+#/data/fpc(/.*)?                                                       u:object_r:fpc_data_file:s0
+#/sys/devices/soc.0/fpc_fpc1020.*/hw_reset                             u:object_r:sysfs_fpc_dev:s0
+#/sys/devices/soc.0/fpc_fpc1020.*/irq                                  u:object_r:sysfs_fpc_dev:s0
+#/sys/devices/soc.0/fpc_fpc1020.*/wakeup_enable                        u:object_r:sysfs_fpc_dev:s0
+
+# Fingerprint data
+#/data/system/users/[0-9]+/fpdata(/.*)?                                u:object_r:fingerprintd_data_file:s0
