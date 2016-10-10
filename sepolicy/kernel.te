@@ -1,0 +1,2 @@
+allow kernel priv_app:process setsched;
+allow kernel vfat:file { getattr open };
