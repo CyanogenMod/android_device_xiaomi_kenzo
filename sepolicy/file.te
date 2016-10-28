@@ -1,3 +1,12 @@
 type fpc_data_file, file_type, data_file_type;
 type fpc_socket, file_type;
 type fpc_sysfs, fs_type, sysfs_type;
+
+type gx_fpd, domain;
+type gx_fpd_device, dev_type;
+type gx_fpd_lib_file, file_type, data_file_type;
+type gx_fp_lib_file, file_type, data_file_type;
+type gx_fpd_data_file, file_type, data_file_type;
+type gx_fpd_service, app_api_service, system_server_service, service_manager_type;
+type gx_fpd_exec, exec_type, file_type;
+file_type_auto_trans(gx_fpd, system_data_file, gx_fpd_data_file);
