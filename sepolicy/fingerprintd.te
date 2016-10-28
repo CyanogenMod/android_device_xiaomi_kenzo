@@ -3,3 +3,10 @@ allow fingerprintd fpc_data_file:sock_file { create unlink };
 allow fingerprintd fpc_sysfs:file rw_file_perms;
 allow fingerprintd tee_device:chr_file rw_file_perms;
 allow fingerprintd uhid_device:chr_file rw_file_perms;
+
+# For Goodix fingerprint
+binder_call(fingerprintd, gx_fpd);
+allow fingerprintd gx_fpd_data_file:file { create unlink };
+allow fingerprintd gx_fpd_data_file:dir rw_file_perms;
+allow fingerprintd gx_fpd_lib_file:file rw_file_perms;
+allow fingerprintd gx_fp_lib_file:file rw_file_perms;
