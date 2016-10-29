@@ -305,6 +305,8 @@
 
     <!-- Is the device capable of hot swapping an UICC Card -->
     <bool name="config_hotswapCapable">true</bool>
+     <!-- Bool whether to show Hardware keys settings in TeslaCoil -->
+    <bool name="config_showHwKeys">true</bool>
 
     <!-- SD card is hot-pluggable on this device -->
     <bool name="config_batterySdCardAccessibility">false</bool>
