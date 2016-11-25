@@ -166,6 +166,9 @@ on fs
     mount_all fstab.qcom
     mkdir /persist/data 0700 system system
     restorecon_recursive /persist
+    
+    chown system system  /dev/goodix_fp
+    chmod 0644 /dev/goodix_fp
 
 on post-fs
     symlink /sdcard /storage/sdcard0
@@ -285,7 +288,7 @@ on post-fs-data
 
     # Fingerprint
     mkdir /data/fpc 0700 system system
-
+    mkdir /data/goodix 0700 system system
     mkdir /data/tombstones 0771 system system
     mkdir /tombstones/modem 0771 system system
     mkdir /tombstones/lpass 0771 system system
@@ -553,3 +556,10 @@ service fingerprintd /system/bin/fingerprintd
     socket fpce stream 0666 system system
     user system
     writepid /dev/cpuset/system-background/tasks
+    
+service gx_fpd /system/bin/gx_fpd
+     class late_start
+     user root
+     group root system
+     writepid /dev/cpuset/system-background/tasks
+     seclabel u:r:gx_fpd:s0

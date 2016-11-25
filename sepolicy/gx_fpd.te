@@ -1,0 +1,27 @@
+allow appdomain gx_fpd_lib_file:file rw_file_perms;
+allow appdomain gx_fp_lib_file:file rw_file_perms;
+allow appdomain gx_fpd_data_file:file rw_file_perms;
+
+allow binderservicedomain gx_fpd_data_file:file { create open getattr write };
+allow binderservicedomain fingerprintd_data_file:file { create open getattr write };
+
+set_prop(gx_fpd, system_prop)
+set_prop(gx_fpd, config_prop)
+
+init_daemon_domain(gx_fpd)
+binder_use(gx_fpd)
+binder_call(gx_fpd, binderservicedomain)
+binder_call(gx_fpd, appdomain)
+binder_call(gx_fpd, system_server);
+binder_service(gx_fpd)
+
+use_keystore(gx_fpd)
+allow gx_fpd keystore:keystore_key { add_auth };
+
+allow gx_fpd gx_fpd_device:chr_file { ioctl read write open };
+allow gx_fpd ion_device:chr_file { read ioctl open };
+allow gx_fpd self:capability dac_override;
+allow gx_fpd tee_device:chr_file { ioctl read write open };
+
+allow tee gx_fpd_data_file:dir { add_name open read remove_name write };
+allow tee gx_fpd_data_file:file { create open read unlink write };
